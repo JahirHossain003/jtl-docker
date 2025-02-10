@@ -6,7 +6,7 @@ FROM php:${PHP_VERSION}-apache AS build
 RUN pecl install xdebug && rm -r /tmp/pear/*
 
 # PHP EXTENSIONS Imagick, intl, bcmath, soap, opcache, pdo_mysql, xdebug
-RUN apt-get update && apt-get install -y nano unzip libzip-dev zip libicu-dev libxml2-dev libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y nano unzip libzip-dev zip libicu-dev libxml2-dev libmagickwand-dev --no-install-recommends rsync && rm -rf /var/lib/apt/lists/*
 RUN printf "\n" | pecl install imagick
 RUN docker-php-ext-install intl bcmath soap opcache pdo_mysql zip calendar \
     && docker-php-ext-enable imagick xdebug

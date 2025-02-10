@@ -13,8 +13,11 @@ services:
       - "80:80"
     depends_on:
       - "jtl-db"
+    environment:
+      PHP_IDE_CONFIG: "serverName=docker"
     volumes:
       - jtl_shop:/var/www/html
+      - "./src:/var/www/html/"
 
   jtl-db:
     image: mariadb:10.11
